@@ -96,3 +96,12 @@ while True:
                 webbrowser.open(f"https://www.youtube.com/results?search_query={query}")
 
         if text in bye:
+            allmp3 = os.listdir(folpbye)
+            goodbye = random.choice(allmp3)
+            playsound(os.path.join(folpbye, goodbye))
+            time.sleep(1)
+            break
+            
+    except:
+        print("ошибка!")
+        playsound("voice/err/err.mp3")
