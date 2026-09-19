@@ -14,7 +14,8 @@ folperr = "voice/err"
 folpinf = "voice/inf"
 folpok = "voice/ok"
 folpbye = "voice/bye"
-folphi = "voice/hi"
+folphi = "voice/hello"
+folphi2 = "voice/hello2"
 
 r = sr.Recognizer()
 r.dynamic_energy_threshold = True
@@ -28,7 +29,7 @@ search_video = ["видео про", "кто такой", "кто такие"]
 open_browser = ["браузер", "открой браузер", "интернет"]
 open_youtube = ["ютуб", "открой ютуб", "youtube"]
 bye = ["пока", "до свидания", "до завтра"]
-hi = ["джарвис", "привет", "добрый день"]
+hi = ["привет", "добрый день"]
 
 for index, name in enumerate(sr.Microphone.list_microphone_names()):
     if name == "РњРёРєСЂРѕС„РѕРЅ (Usb Audio Device)":
@@ -44,6 +45,15 @@ while True:
             audio = r.listen(source)
             text = r.recognize_google(audio, language = "ru-RU")
             text = text.lower()
+
+        if "джарвис" not in text:
+            continue
+
+        allmp3 = os.listdir(folphi)
+        hello = random.choice(allmp3)
+        playsound(os.path.join(folphi, hello))
+
+        text = text.replace("джарвис", "").strip()
 
         currtrigger = None
 
@@ -65,7 +75,7 @@ while True:
             now = datetime.now()
             currtime = now.strftime("%H:%M")
             print(f"время сейчас: {currtime}")
-            llmp3 = os.listdir(folpinf)
+            allmp3 = os.listdir(folpinf)
             openq = random.choice(allmp3)
             playsound(os.path.join(folpinf, openq))
 
@@ -80,14 +90,14 @@ while True:
             response = requests.get(url)
             temp = response.text.strip()
             print(f"погода: {city} {temp}")
-            llmp3 = os.listdir(folpinf)
+            allmp3 = os.listdir(folpinf)
             openw = random.choice(allmp3)
             playsound(os.path.join(folpinf, openw))
-        
+            
         if text in hi:
-            allmp3 = os.listdir(folphi)
+            allmp3 = os.listdir(folphi2)
             hello = random.choice(allmp3)
-            playsound(os.path.join(folphi, hello))
+            playsound(os.path.join(folphi2, hello))
 
         if text in open_browser:
             allmp3 = os.listdir(folpok)
