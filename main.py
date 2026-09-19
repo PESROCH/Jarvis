@@ -9,6 +9,7 @@ import requests
 
 micindex = None
 
+folperr = "voice/err"
 folpinf = "voice/inf"
 folpok = "voice/ok"
 folpbye = "voice/bye"
@@ -21,7 +22,7 @@ r.energy_threshold = 3750
 weather = ["погода", "какая сейчас погода", "какая температура", "температура"]
 tim = ["сколько время", "который час", "время", "сколько сейчас времени"]
 search = ["найди про", "найди", "ищи", "что такое", "кто такие", "кто такой"]
-search_video = ["найди видео про", "ищи видео про", "кто такой", "кто такие"]
+search_video = ["видео про", "кто такой", "кто такие"]
 open_browser = ["браузер", "открой браузер", "интернет"]
 open_youtube = ["ютуб", "открой ютуб", "youtube"]
 bye = ["пока", "до свидания", "до завтра"]
@@ -73,8 +74,8 @@ while True:
             temp = response.text.strip()
             print(f"погода: {city} {temp}")
             llmp3 = os.listdir(folpinf)
-            openq = random.choice(allmp3)
-            playsound(os.path.join(folpinf, openq))
+            openw = random.choice(allmp3)
+            playsound(os.path.join(folpinf, openw))
         
         if text in hi:
             allmp3 = os.listdir(folphi)
@@ -117,5 +118,7 @@ while True:
             break
             
     except:
-        print("ошибка!")
-        playsound("voice/err/err.mp3")
+        print("ошибка распознования речи!")
+        allmp3 = os.listdir(folperr)
+        err = random.choice(allmp3)
+        playsound(os.path.join(folperr, err))
