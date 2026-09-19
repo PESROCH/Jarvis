@@ -4,8 +4,7 @@ import os
 import time
 import random
 import webbrowser
-from datetime import datetime
-import requests
+import time
 
 micindex = None
 
@@ -21,6 +20,7 @@ r = sr.Recognizer()
 r.dynamic_energy_threshold = True
 r.energy_threshold = 3850
 
+shutdown = ["перезагрузи пк", "перезагрузка", "перезагрузи компьютер"]
 vscode = ["vs code", "открой vs code"]
 adguard = ["adguard", "открой adguard"]
 telegram = ["открой telegram", "telegram"]
@@ -74,6 +74,22 @@ while True:
                 playsound(os.path.join(folpok, openq))
                 webbrowser.open(f"https://www.google.com/search?q={query}")
 
+        if text in shutdown:
+            allmp3 = os.listdir(folpok)
+            openq = random.choice(allmp3)
+            playsound(os.path.join(folpok, openq))
+            print("5...")
+            time.sleep(1)
+            print("4...")
+            time.sleep(1)
+            print("3...")
+            time.sleep(1)
+            print("2...")
+            time.sleep(1)
+            print("1...")
+            time.sleep(1)
+            os.system("shutdown /r /t 0")
+
         if text in telegram:
             allmp3 = os.listdir(folpok)
             openq = random.choice(allmp3)
@@ -93,12 +109,10 @@ while True:
             os.startfile(r"D:\Microsoft VS Code\Code.exe")
 
         if text in tim:
-            now = datetime.now()
-            currtime = now.strftime("%H:%M")
-            print(f"время сейчас: {currtime}")
             allmp3 = os.listdir(folpinf)
             openq = random.choice(allmp3)
             playsound(os.path.join(folpinf, openq))
+            webbrowser.open("https://onlinealarmkur.com/clock/ru/#digital-clock")
 
         if text in rofl:
             allmp3 = os.listdir(folprofl)
@@ -106,14 +120,10 @@ while True:
             playsound(os.path.join(folprofl, openrofl))
 
         if text in weather:
-            city = "Vladivostok"
-            url = f"https://wttr.in/{city}?format=%t"
-            response = requests.get(url)
-            temp = response.text.strip()
-            print(f"погода: {city} {temp}")
             allmp3 = os.listdir(folpinf)
             openw = random.choice(allmp3)
             playsound(os.path.join(folpinf, openw))
+            webbrowser.open("https://www.accuweather.com/")
             
         if text in hi:
             allmp3 = os.listdir(folphi2)
