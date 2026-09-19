@@ -1,14 +1,15 @@
 from playsound import playsound
 import speech_recognition as sr
-import pyaudio
 import os
 import time
 import random
 import webbrowser
 from datetime import datetime
+import requests
 
 micindex = None
 
+folpinf = "voice/inf"
 folpok = "voice/ok"
 folpbye = "voice/bye"
 folphi = "voice/hi"
@@ -17,6 +18,7 @@ r = sr.Recognizer()
 r.dynamic_energy_threshold = True
 r.energy_threshold = 3750
 
+weather = ["погода", "какая сейчас погода", "какая температура", "температура"]
 tim = ["сколько время", "который час", "время", "сколько сейчас времени"]
 search = ["найди про", "найди", "ищи", "что такое", "кто такие", "кто такой"]
 search_video = ["найди видео про", "ищи видео про", "кто такой", "кто такие"]
@@ -60,7 +62,19 @@ while True:
             now = datetime.now()
             currtime = now.strftime("%H:%M")
             print(f"время сейчас: {currtime}")
-            playsound("voice/time/time.mp3")
+            llmp3 = os.listdir(folpinf)
+            openq = random.choice(allmp3)
+            playsound(os.path.join(folpinf, openq))
+
+        if text in weather:
+            city = "Vladivostok"
+            url = f"https://wttr.in/{city}?format=%t"
+            response = requests.get(url)
+            temp = response.text.strip()
+            print(f"погода: {city} {temp}")
+            llmp3 = os.listdir(folpinf)
+            openq = random.choice(allmp3)
+            playsound(os.path.join(folpinf, openq))
         
         if text in hi:
             allmp3 = os.listdir(folphi)
