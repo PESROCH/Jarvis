@@ -8,6 +8,12 @@ import time
 
 micindex = None
 
+def timer(int):
+    for i in range(int):
+        print(f"{int}...")
+        time.sleep(1)
+        int = int - 1
+
 folprofl = "voice/rofl"
 folperr = "voice/err"
 folpinf = "voice/inf"
@@ -78,16 +84,7 @@ while True:
             allmp3 = os.listdir(folpok)
             openq = random.choice(allmp3)
             playsound(os.path.join(folpok, openq))
-            print("5...")
-            time.sleep(1)
-            print("4...")
-            time.sleep(1)
-            print("3...")
-            time.sleep(1)
-            print("2...")
-            time.sleep(1)
-            print("1...")
-            time.sleep(1)
+            timer(5)
             os.system("shutdown /r /t 0")
 
         if text in telegram:
