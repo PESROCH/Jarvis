@@ -17,7 +17,7 @@ folphi = "voice/hi"
 
 r = sr.Recognizer()
 r.dynamic_energy_threshold = True
-r.energy_threshold = 3750
+r.energy_threshold = 3850
 
 weather = ["погода", "какая сейчас погода", "какая температура", "температура"]
 tim = ["сколько время", "который час", "время", "сколько сейчас времени"]
