@@ -9,6 +9,7 @@ import requests
 
 micindex = None
 
+folprofl = "voice/rofl"
 folperr = "voice/err"
 folpinf = "voice/inf"
 folpok = "voice/ok"
@@ -19,6 +20,7 @@ r = sr.Recognizer()
 r.dynamic_energy_threshold = True
 r.energy_threshold = 3850
 
+rofl = ["расскажи шутку", "расскажи анекдот", "пошути", "шутка", "анекдот"]
 weather = ["погода", "какая сейчас погода", "какая температура", "температура"]
 tim = ["сколько время", "который час", "время", "сколько сейчас времени"]
 search = ["найди про", "найди", "ищи", "что такое", "кто такие", "кто такой"]
@@ -66,6 +68,11 @@ while True:
             llmp3 = os.listdir(folpinf)
             openq = random.choice(allmp3)
             playsound(os.path.join(folpinf, openq))
+
+        if text in rofl:
+            allmp3 = os.listdir(folprofl)
+            openrofl = random.choice(allmp3)
+            playsound(os.path.join(folprofl, openrofl))
 
         if text in weather:
             city = "Vladivostok"
