@@ -21,13 +21,16 @@ r = sr.Recognizer()
 r.dynamic_energy_threshold = True
 r.energy_threshold = 3850
 
+vscode = ["vs code", "открой vs code"]
+adguard = ["adguard", "открой adguard"]
+telegram = ["открой telegram", "telegram"]
 rofl = ["расскажи шутку", "расскажи анекдот", "пошути", "шутка", "анекдот"]
 weather = ["погода", "какая сейчас погода", "какая температура", "температура"]
 tim = ["сколько время", "который час", "время", "сколько сейчас времени"]
 search = ["найди про", "найди", "ищи", "что такое", "кто такие", "кто такой"]
 search_video = ["видео про", "кто такой", "кто такие"]
 open_browser = ["браузер", "открой браузер", "интернет"]
-open_youtube = ["ютуб", "открой ютуб", "youtube"]
+open_youtube = ["ютуб", "открой youtube", "youtube"]
 bye = ["пока", "до свидания", "до завтра"]
 hi = ["привет", "добрый день"]
 
@@ -70,6 +73,24 @@ while True:
                 openq = random.choice(allmp3)
                 playsound(os.path.join(folpok, openq))
                 webbrowser.open(f"https://www.google.com/search?q={query}")
+
+        if text in telegram:
+            allmp3 = os.listdir(folpok)
+            openq = random.choice(allmp3)
+            playsound(os.path.join(folpok, openq))
+            os.startfile(r"C:\Users\kmaks\AppData\Roaming\Telegram Desktop\Telegram.exe")
+
+        if text in adguard:
+            allmp3 = os.listdir(folpok)
+            openq = random.choice(allmp3)
+            playsound(os.path.join(folpok, openq))
+            os.startfile(r"C:\Program Files\AdGuardVpn\AdGuardVpn.Launcher.exe")
+
+        if text in vscode:
+            allmp3 = os.listdir(folpok)
+            openq = random.choice(allmp3)
+            playsound(os.path.join(folpok, openq))
+            os.startfile(r"D:\Microsoft VS Code\Code.exe")
 
         if text in tim:
             now = datetime.now()
